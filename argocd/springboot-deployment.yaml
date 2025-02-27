@@ -1,8 +1,9 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: springboot-app
-  namespace: app
+  namespace: default
   labels:
     app: springboot-app
 spec:
@@ -55,4 +56,18 @@ spec:
               cpu: "500m"
               memory: "512Mi"
 
-
+---
+# Service để truy cập ứng dụng Spring Boot
+apiVersion: v1
+kind: Service
+metadata:
+  name: springboot-service
+  namespace: default
+spec:
+  selector:
+    app: springboot-app
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
+  type: LoadBalancer
