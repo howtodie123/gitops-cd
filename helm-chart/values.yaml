@@ -1,0 +1,38 @@
+replicaCount: 1
+
+image:
+  repository: ghcr.io/howtodie123/backend
+  tag: "main-a3a17ff3786afb95ed41d068da6fa1c7ae4268ba"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 8080
+
+ingress:
+  enabled: false
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 250m
+    memory: 256Mi
+
+externalSecrets:
+  enabled: true
+  name: springboot-secret
+  namespace: app
+  clusterSecretStore: gcp-store
+  secretKeys:
+    - name: spring.datasource.url
+      remoteKey: spring-datasource-url
+    - name: spring.datasource.username
+      remoteKey: spring-datasource-username
+    - name: spring.datasource.password
+      remoteKey: spring-datasource-password
+    - name: spring.mail.username
+      remoteKey: spring-mail-username
+    - name: spring.mail.password
+      remoteKey: spring-mail-password

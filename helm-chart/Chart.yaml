@@ -1,0 +1,10 @@
+apiVersion: v2
+name: springboot-app
+description: A Helm chart for deploying Spring Boot with ExternalSecrets
+type: application
+version: 1.0.0
+appVersion: "main-a3a17ff3786afb95ed41d068da6fa1c7ae4268ba"
+dependencies:
+  - name: external-secrets
+    repository: https://external-secrets.github.io/external-secrets
+    version: "0.14.3"
